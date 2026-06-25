@@ -1,5 +1,5 @@
 function computerPlay() {
-    const choices = ['rock', 'paper', 'scissors'];
+    const choices = ["Rock", "Paper", "Scissors"];
     return choices[Math.floor(Math.random() * choices.length)];
 }
 
@@ -19,6 +19,7 @@ function playRound(playerSelection, computerSelection)
     if (playerSelection === computerSelection) {
         return {
             valid: true,
+            winner: "tie",
             message: "It's a tie!"
         };
     }
@@ -31,12 +32,14 @@ function playRound(playerSelection, computerSelection)
         if (playerWins) {
             return {
                 valid: true,
+                winner: "player",
                 message: `You win! ${playerSelection} beats ${computerSelection}.`
             };
         }
 
         return {
             valid: true,
+            winner: "computer",
             message: `You lose! ${computerSelection} beats ${playerSelection}.`
         };
     }
@@ -51,7 +54,7 @@ function playRound(playerSelection, computerSelection)
         console.log ("Defeat me in 5 rounds of Rock, Paper Scissors to win!")
 
         while (roundsPlayed < 5) {
-            const playerSelection = prompt("Round $ {roundsPlayed + 1}/5\nChoose rock, paper, or scissors):");
+            const playerSelection = prompt("Round ${roundsPlayed + 1}/5\nChoose rock, paper, or scissors):");
 
             if (playerSelection === null) {
                 console.log("Game cancelled.");
@@ -66,7 +69,7 @@ function playRound(playerSelection, computerSelection)
                 continue;
             }
 
-            console.log (result.winner === "player")
+            if (result.winner === "player")
             {
                 playerScore++;
             }
@@ -76,7 +79,7 @@ function playRound(playerSelection, computerSelection)
             }
 
             console.log(
-                "Score - > You: ${playerScore}, Computer: ${computerScore}"
+                'Score - > You: ${playerScore}, Computer: ${computerScore}'
             );
 
             roundsPlayed++;
@@ -87,12 +90,14 @@ function playRound(playerSelection, computerSelection)
         if (playerScore > computerScore) {
             console.log("Congratulations! You defeated the bad AI! Final Score: ${playerScore}-${computerScore}"
             );
-
+        }
             else if (computerScore > playerScore) {
                 console.log ("You lose! The AI has dominated the world! Final Score: ${computerScore}-${playerScore}"
                 );
+            }
             else {
                 console.log ("It's a tie! Final Score: ${playerScore}-${computerScore}"
                 )
             }
-        game();
+game();
+    }
