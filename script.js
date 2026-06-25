@@ -63,7 +63,7 @@ function game() {
 
 
         if (!result.valid) {
-            alert(`Computer Chose: ${computerSelection}\n\n${result.message}`);
+            alert(result.message);
             continue;
         }
 
