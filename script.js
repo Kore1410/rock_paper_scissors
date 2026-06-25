@@ -51,7 +51,7 @@ function playRound(playerSelection, computerSelection)
         console.log ("Defeat me in 5 rounds of Rock, Paper Scissors to win!")
 
         while (roundsPlayed < 5) {
-            const playerSelection = prompt("Round $ {roundsPlayed + 1}: Choose rock, paper, or scissors):");
+            const playerSelection = prompt("Round $ {roundsPlayed + 1}/5\nChoose rock, paper, or scissors):");
 
             if (playerSelection === null) {
                 console.log("Game cancelled.");
