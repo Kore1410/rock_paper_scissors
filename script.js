@@ -10,14 +10,13 @@ function playRound(playerSelection, computerSelection) {
     if (!["Rock", "Paper", "Scissors"].includes(playerSelection)) {
         return {
             valid: false,
-            message: "Invalid selection. Please choose rock, paper, or scissors."
+            message: "Invalid selection. Please choose Rock, Paper, or Scissors."
         };
     }
 
     if (playerSelection === computerSelection) {
         return {
             valid: true,
-            winner: "tie",
             message: "It's a tie!"
         };
     }
@@ -42,33 +41,38 @@ function playRound(playerSelection, computerSelection) {
     };
 }
 
+function restart() {
+    let validation = confirm('Do you wish to restart?');
+    
+    while (validation) {
+      game();
+      validation = restart();
+    }
+    return validation;
+  }
+
 function game() {
     let playerScore = 0;
     let computerScore = 0;
     let roundsPlayed = 0;
 
-    alert("ROCK, PAPER or SCISSORS!\n\nI am a bad AI that wants to dominate the world through the game of ROCK, PAPER or SCISSORS!\nDefeat me in 5 rounds of Rock, Paper Scissors to win!")
+    alert("ROCK, PAPER or SCISSORS!\n\nI am a bad AI that wants to dominate the world through the game of ROCK, PAPER or SCISSORS!\nDefeat me in a best-of-5 of Rock, Paper, Scissors to win!")
 
-    while (roundsPlayed < 5) {
-        const playerSelection = prompt(`Round ${roundsPlayed + 1}/5\n`+ `Score - > You: ${playerScore}, Computer: ${computerScore}\n\n` + `Choose rock, paper, or scissors):`);
+    while (computerScore + playerScore < 5 && computerScore < 3 && playerScore < 3) {
+        const playerSelection = prompt(`Round ${roundsPlayed + 1}\nScore - > You: ${playerScore}, Computer: ${computerScore}\n\nChoose Rock, Paper, or Scissors):`);
 
         if (playerSelection === null) {
             alert("Game cancelled.");
-            return;
+            restart();
         }
 
         const computerSelection = computerPlay();
         const result = playRound(playerSelection, computerSelection);
 
-
-
         if (!result.valid) {
             alert(result.message);
             continue;
         }
-
-        /*alert(`Computer chose: ${computerSelection}`);
-        alert(result.message);*/
 
         alert (`computer chose: ${computerSelection}.\n\n`+ result.message);
 
@@ -79,26 +83,17 @@ function game() {
             computerScore++;
         }
 
-        /*alert(
-            `Score - > You: ${playerScore}, Computer: ${computerScore}`
-        );*/
-
         roundsPlayed++;
     }
-
-    console.log("==============================");
 
     if (playerScore > computerScore) {
         alert(`Congratulations! You defeated the bad AI! Final Score: ${playerScore}-${computerScore}`
         );
-    }
-    else if (computerScore > playerScore) {
-        alert(`You lose! The AI has dominated the world! Final Score: ${computerScore}-${playerScore}`
+    } else {
+        alert(`You lose! The AI has dominated the world! Final Score: ${playerScore}-${computerScore}`
         );
-    }
-    else {
-        alert(`It's a tie! Final Score: ${playerScore}-${computerScore}`
-        )
     }
 }
 game();
+restart();
+alert('GAME OVER');
