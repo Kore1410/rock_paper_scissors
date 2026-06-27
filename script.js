@@ -7,41 +7,49 @@ function playRound(playerSelection, computerSelection) {
     
     playerSelection = playerSelection.trim();
     playerSelection =
+<<<<<<< HEAD
         playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
     
+=======
+        playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
+    ;
+
+    const playerWins =
+        (playerSelection === "Rock" && computerSelection === "Scissors") ||
+        (playerSelection === "Paper" && computerSelection === "Rock") ||
+        (playerSelection === "Scissors" && computerSelection === "Paper")
+    ;
+
+>>>>>>> e5f3f82e68fdd66e695aa1e756f46c44bd1ac0dc
 
     if (!["Rock", "Paper", "Scissors"].includes(playerSelection)) {
         return {
             valid: false,
             message: "Invalid selection. Please choose Rock, Paper, or Scissors."
         };
-    }
-
-    if (playerSelection === computerSelection) {
+    } else if (playerSelection === computerSelection) {
         return {
             valid: true,
             message: "It's a tie!"
         };
-    }
-
-    const playerWins =
-        (playerSelection === "Rock" && computerSelection === "Scissors") ||
-        (playerSelection === "Paper" && computerSelection === "Rock") ||
-        (playerSelection === "Scissors" && computerSelection === "Paper");
-
-    if (playerWins) {
+    } else if (playerWins) {
         return {
             valid: true,
             winner: "player",
             message: `You win! ${playerSelection} beats ${computerSelection}.`
         };
+    } else if (!playerWins) {
+        return {
+            valid: true,
+            winner: "computer",
+            message: `You lose! ${computerSelection} beats ${playerSelection}.`
+        };
+    } else {
+        return {
+            valid: false,
+            message: "An unexpect error has occurred"
+        };
     }
-
-    return {
-        valid: true,
-        winner: "computer",
-        message: `You lose! ${computerSelection} beats ${playerSelection}.`
-    };
 }
 
 function restart() {
@@ -52,7 +60,7 @@ function restart() {
       validation = restart();
     }
     return validation;
-  }
+}
 
   function playerPlay() {
     let playerSelection = prompt(`Choose Rock, Paper, or Scissors):`);
@@ -84,9 +92,10 @@ function game() {
 
         if (result.winner === "player") {
             playerScore++;
-        }
-        else if (result.winner === "computer") {
+        } else if (result.winner === "computer") {
             computerScore++;
+        } else {
+            "An unexpect error has occurred"
         }
 
         roundsPlayed++;
