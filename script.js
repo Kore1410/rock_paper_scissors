@@ -7,10 +7,6 @@ function playRound(playerSelection, computerSelection) {
     
     playerSelection = playerSelection.trim();
     playerSelection =
-<<<<<<< HEAD
-        playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
-    
-=======
         playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
     ;
 
@@ -20,7 +16,6 @@ function playRound(playerSelection, computerSelection) {
         (playerSelection === "Scissors" && computerSelection === "Paper")
     ;
 
->>>>>>> e5f3f82e68fdd66e695aa1e756f46c44bd1ac0dc
 
     if (!["Rock", "Paper", "Scissors"].includes(playerSelection)) {
         return {
