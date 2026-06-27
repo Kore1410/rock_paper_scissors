@@ -4,8 +4,11 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
+    
+    playerSelection = playerSelection.trim();
     playerSelection =
         playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
+    
 
     if (!["Rock", "Paper", "Scissors"].includes(playerSelection)) {
         return {
@@ -51,6 +54,11 @@ function restart() {
     return validation;
   }
 
+  function playerPlay() {
+    let playerSelection = prompt(`Choose Rock, Paper, or Scissors):`);
+    return playerSelection;
+  }
+
 function game() {
     let playerScore = 0;
     let computerScore = 0;
@@ -59,7 +67,7 @@ function game() {
     alert("ROCK, PAPER or SCISSORS!\n\nI am a bad AI that wants to dominate the world through the game of ROCK, PAPER or SCISSORS!\nDefeat me in a best-of-5 of Rock, Paper, Scissors to win!")
 
     while (computerScore + playerScore < 5 && computerScore < 3 && playerScore < 3) {
-        const playerSelection = prompt(`Round ${roundsPlayed + 1}\nScore - > You: ${playerScore}, Computer: ${computerScore}\n\nChoose Rock, Paper, or Scissors):`);
+        playerSelection = playerPlay();
 
         if (playerSelection === null) {
             alert("Game cancelled.");
@@ -74,8 +82,6 @@ function game() {
             continue;
         }
 
-        alert (`computer chose: ${computerSelection}.\n\n`+ result.message);
-
         if (result.winner === "player") {
             playerScore++;
         }
@@ -84,6 +90,7 @@ function game() {
         }
 
         roundsPlayed++;
+        alert (`Round ${roundsPlayed + 1}\nScore - > You: ${playerScore}, Computer: ${computerScore}\n\ncomputer chose: ${computerSelection}.\n\n`+ result.message);
     }
 
     if (playerScore > computerScore) {
